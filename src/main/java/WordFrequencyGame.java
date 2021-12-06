@@ -17,12 +17,13 @@ public class WordFrequencyGame {
 
     public static final String SPACE_PATTERN = "\\s+";
     public static final String NEW_LINE_PATTERN = "\n";
+    public static final String NUMERIC_ONE_PATTERN = " 1";
 
     public String getResult(String wordPattern){
 
 
         if (wordPattern.split(SPACE_PATTERN).length==1) {
-            return wordPattern + " 1";
+            return wordPattern + NUMERIC_ONE_PATTERN;
         } else {
 
             try {

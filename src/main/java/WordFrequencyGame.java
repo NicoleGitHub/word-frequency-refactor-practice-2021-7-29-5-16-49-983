@@ -28,23 +28,7 @@ public class WordFrequencyGame {
 
             try {
 
-                //split the input string with 1 to n pieces of spaces
-                String[] words = wordPattern.split(SPACE_PATTERN);
-
-                List<WordInfo> wordInfoList = new ArrayList<>();
-                for (String s : words) {
-                    WordInfo wordInfo = new WordInfo(s, 1);
-                    wordInfoList.add(wordInfo);
-                }
-
-                //get the map for the next step of sizing the same word
-                Map<String, List<WordInfo>> map = getListMap(wordInfoList);
-
-                List<WordInfo> wordInfos = new ArrayList<>();
-                for (Map.Entry<String, List<WordInfo>> entry : map.entrySet()){
-                    WordInfo wordInfo = new WordInfo(entry.getKey(), entry.getValue().size());
-                    wordInfos.add(wordInfo);
-                }
+                List<WordInfo> wordInfos = calculateWordFrequency(wordPattern);
 
                 wordInfos.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
 
@@ -60,6 +44,27 @@ public class WordFrequencyGame {
                 return "Calculate Error";
             }
         }
+    }
+
+    private List<WordInfo> calculateWordFrequency(String wordPattern) {
+        //split the input string with 1 to n pieces of spaces
+        String[] words = wordPattern.split(SPACE_PATTERN);
+
+        List<WordInfo> wordInfoList = new ArrayList<>();
+        for (String s : words) {
+            WordInfo wordInfo = new WordInfo(s, 1);
+            wordInfoList.add(wordInfo);
+        }
+
+        //get the map for the next step of sizing the same word
+        Map<String, List<WordInfo>> map = getListMap(wordInfoList);
+
+        List<WordInfo> wordInfos = new ArrayList<>();
+        for (Map.Entry<String, List<WordInfo>> entry : map.entrySet()){
+            WordInfo wordInfo = new WordInfo(entry.getKey(), entry.getValue().size());
+            wordInfos.add(wordInfo);
+        }
+        return wordInfos;
     }
 
 

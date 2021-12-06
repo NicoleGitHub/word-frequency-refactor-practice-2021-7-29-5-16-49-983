@@ -16,10 +16,6 @@ public class WordFrequencyGame {
 
     public String getResult(String sentence){
 
-        if (isSentenceLengthEqualsOne(sentence)) {
-            return sentence + NUMERIC_ONE_PATTERN;
-        }
-
         try {
             List<WordInfo> wordInfos = calculateWordFrequency(sentence);
             sortWordInfo(wordInfos);
@@ -30,15 +26,11 @@ public class WordFrequencyGame {
 
     }
 
-    private boolean isSentenceLengthEqualsOne(String sentence) {
-        return sentence.split(SPACE_PATTERN).length==1;
-    }
-
     private String joiningWordsAsSentence(List<WordInfo> wordInfos) {
         StringJoiner stringJoiner = new StringJoiner(NEW_LINE_PATTERN);
 
         wordInfos.forEach(word -> {
-            stringJoiner.add(word.getWord() + " " +word.getWordCount());
+            stringJoiner.add(word.getWord() + " " + word.getWordCount());
         });
 
         return stringJoiner.toString();

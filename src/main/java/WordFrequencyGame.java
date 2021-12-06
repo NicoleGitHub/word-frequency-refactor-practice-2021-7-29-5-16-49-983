@@ -12,7 +12,7 @@ public class WordFrequencyGame {
 
     public static final String SPACE_PATTERN = "\\s+";
     public static final String NEW_LINE_PATTERN = "\n";
-    public static final String NUMERIC_ONE_PATTERN = " 1";
+    public static final String SPACING_PATTERN = " ";
 
     public String getResult(String sentence){
 
@@ -30,7 +30,7 @@ public class WordFrequencyGame {
         StringJoiner stringJoiner = new StringJoiner(NEW_LINE_PATTERN);
 
         wordInfos.forEach(word -> {
-            stringJoiner.add(word.getWord() + " " + word.getWordCount());
+            stringJoiner.add(word.getWord() + SPACING_PATTERN + word.getWordCount());
         });
 
         return stringJoiner.toString();

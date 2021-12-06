@@ -40,10 +40,11 @@ public class WordFrequencyGame {
 
     private String joiningWordsAsSentence(List<WordInfo> wordInfos) {
         StringJoiner stringJoiner = new StringJoiner(NEW_LINE_PATTERN);
-        for (WordInfo wordInfo : wordInfos) {
-            String s = wordInfo.getWord() + " " +wordInfo.getWordCount();
-            stringJoiner.add(s);
-        }
+
+        wordInfos.forEach(word -> {
+            stringJoiner.add(word.getWord() + " " +word.getWordCount());
+        });
+
         return stringJoiner.toString();
     }
 

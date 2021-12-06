@@ -19,16 +19,16 @@ public class WordFrequencyGame {
     public static final String NEW_LINE_PATTERN = "\n";
     public static final String NUMERIC_ONE_PATTERN = " 1";
 
-    public String getResult(String wordPattern){
+    public String getResult(String sentence){
 
 
-        if (wordPattern.split(SPACE_PATTERN).length==1) {
-            return wordPattern + NUMERIC_ONE_PATTERN;
+        if (sentence.split(SPACE_PATTERN).length==1) {
+            return sentence + NUMERIC_ONE_PATTERN;
         } else {
 
             try {
 
-                List<WordInfo> wordInfos = calculateWordFrequency(wordPattern);
+                List<WordInfo> wordInfos = calculateWordFrequency(sentence);
 
                 wordInfos.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
 
@@ -46,9 +46,9 @@ public class WordFrequencyGame {
         }
     }
 
-    private List<WordInfo> calculateWordFrequency(String wordPattern) {
+    private List<WordInfo> calculateWordFrequency(String sentence) {
         //split the input string with 1 to n pieces of spaces
-        String[] words = wordPattern.split(SPACE_PATTERN);
+        String[] words = sentence.split(SPACE_PATTERN);
 
         List<WordInfo> wordInfoList = new ArrayList<>();
         for (String s : words) {
@@ -64,6 +64,11 @@ public class WordFrequencyGame {
             WordInfo wordInfo = new WordInfo(entry.getKey(), entry.getValue().size());
             wordInfos.add(wordInfo);
         }
+        return wordInfos;
+    }
+    
+    private List<WordInfo> calculateWordFrequencyTemp(String sentence) {
+        List<WordInfo> wordInfos = new ArrayList<>();
         return wordInfos;
     }
 

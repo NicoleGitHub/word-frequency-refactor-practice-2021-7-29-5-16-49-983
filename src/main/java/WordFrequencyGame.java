@@ -21,7 +21,7 @@ public class WordFrequencyGame {
 
         if (sentence.split(SPACE_PATTERN).length==1) {
             return sentence + NUMERIC_ONE_PATTERN;
-        } else {
+        }
 
             try {
 
@@ -35,7 +35,7 @@ public class WordFrequencyGame {
 
                 return "Calculate Error";
             }
-        }
+        
     }
 
     private String joiningWordsAsSentence(List<WordInfo> wordInfos) {

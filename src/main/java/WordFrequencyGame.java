@@ -48,7 +48,7 @@ public class WordFrequencyGame {
     }
 
     private List<WordInfo> calculateWordFrequency(String sentence) {
-        List<String> words = Arrays.asList(sentence.split(SPACE_PATTERN));
+        List<String> words = splitSentenceWithSpace(sentence);
         List<String> distinctWords = findDistinctWord(words);
 
         List<WordInfo> wordInfos = new ArrayList<>();
@@ -60,6 +60,10 @@ public class WordFrequencyGame {
         });
 
         return wordInfos;
+    }
+
+    private List<String> splitSentenceWithSpace(String sentence) {
+        return Arrays.asList(sentence.split(SPACE_PATTERN));
     }
 
     private List<String> findDistinctWord(List<String> words) {

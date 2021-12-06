@@ -1,13 +1,6 @@
 import java.util.*;
 import java.util.stream.Collectors;
 
-// naming
-// magic string
-// temp var
-// for loop
-// long method
-// if/else
-
 public class WordFrequencyGame {
 
     public static final String SPACE_PATTERN = "\\s+";
@@ -16,15 +9,14 @@ public class WordFrequencyGame {
     public static final String CALCULATE_ERROR = "Calculate Error";
 
     public String getResult(String sentence){
-
         try {
             List<WordInfo> wordInfos = calculateWordFrequency(sentence);
             sortWordInfo(wordInfos);
             return joiningWordsAsSentence(wordInfos);
+
         } catch (Exception e) {
             return CALCULATE_ERROR;
         }
-
     }
 
     private String joiningWordsAsSentence(List<WordInfo> wordInfos) {
@@ -46,14 +38,14 @@ public class WordFrequencyGame {
 
         List<WordInfo> wordInfos = new ArrayList<>();
         findDistinctWords(words).forEach(distinctWord -> {
-            wordInfos.add(new WordInfo(distinctWord, (int) findDistinctWordsFrequencyFromWords(words, distinctWord)));
+            wordInfos.add(new WordInfo(distinctWord, findDistinctWordsFrequencyFromWords(words, distinctWord)));
         });
 
         return wordInfos;
     }
 
-    private long findDistinctWordsFrequencyFromWords(List<String> words, String distinctWord) {
-        return words.stream().filter(word -> word.equals(distinctWord)).count();
+    private int findDistinctWordsFrequencyFromWords(List<String> words, String distinctWord) {
+        return Math.toIntExact(words.stream().filter(word -> word.equals(distinctWord)).count());
     }
 
     private List<String> splitSentenceWithSpace(String sentence) {

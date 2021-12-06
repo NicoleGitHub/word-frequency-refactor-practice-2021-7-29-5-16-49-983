@@ -8,8 +8,6 @@ import java.util.stream.Collectors;
 // long method
 // if/else
 
-// duplicate code -> else {}
-
 public class WordFrequencyGame {
 
     public static final String SPACE_PATTERN = "\\s+";
@@ -47,7 +45,7 @@ public class WordFrequencyGame {
     }
 
     private void sortWordInfo(List<WordInfo> wordInfos) {
-        wordInfos.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
+        wordInfos.sort((word, nextWord) -> nextWord.getWordCount() - word.getWordCount());
     }
 
     private List<WordInfo> calculateWordFrequency(String sentence) {

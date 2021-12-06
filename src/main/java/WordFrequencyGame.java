@@ -39,12 +39,12 @@ public class WordFrequencyGame {
                 //get the map for the next step of sizing the same word
                 Map<String, List<WordInfo>> map = getListMap(wordInfoList);
 
-                List<WordInfo> list = new ArrayList<>();
+                List<WordInfo> wordInfos = new ArrayList<>();
                 for (Map.Entry<String, List<WordInfo>> entry : map.entrySet()){
                     WordInfo wordInfo = new WordInfo(entry.getKey(), entry.getValue().size());
-                    list.add(wordInfo);
+                    wordInfos.add(wordInfo);
                 }
-                wordInfoList = list;
+                wordInfoList = wordInfos;
 
                 wordInfoList.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
 

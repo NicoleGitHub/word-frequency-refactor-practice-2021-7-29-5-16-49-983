@@ -27,7 +27,7 @@ public class WordFrequencyGame {
 
                 List<WordInfo> wordInfos = calculateWordFrequency(sentence);
 
-                wordInfos.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
+                sortWordInfo(wordInfos);
 
                 StringJoiner stringJoiner = new StringJoiner(NEW_LINE_PATTERN);
                 for (WordInfo wordInfo : wordInfos) {
@@ -42,10 +42,14 @@ public class WordFrequencyGame {
             }
         }
     }
-    
+
+    private void sortWordInfo(List<WordInfo> wordInfos) {
+        wordInfos.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
+    }
+
     private List<WordInfo> calculateWordFrequency(String sentence) {
         List<String> words = Arrays.asList(sentence.split(SPACE_PATTERN));
-        List<String> distinctWords = words.stream().distinct().collect(Collectors.toList());
+        List<String> distinctWords = findDistinctWord(words);
 
         List<WordInfo> wordInfos = new ArrayList<>();
         distinctWords.forEach(distinctWord -> {
@@ -58,25 +62,8 @@ public class WordFrequencyGame {
         return wordInfos;
     }
 
-
-    private Map<String,List<WordInfo>> getListMap(List<WordInfo> wordInfos) {
-        Map<String, List<WordInfo>> stringWordInfoListHashMap = new HashMap<>();
-        for (WordInfo wordInfo : wordInfos){
-//       map.computeIfAbsent(input.getValue(), k -> new ArrayList<>()).add(input);
-            if (!stringWordInfoListHashMap.containsKey(wordInfo.getWord())){
-                ArrayList newWordInfos = new ArrayList<>();
-                newWordInfos.add(wordInfo);
-                stringWordInfoListHashMap.put(wordInfo.getWord(), newWordInfos);
-            }
-
-            else {
-                stringWordInfoListHashMap.get(wordInfo.getWord()).add(wordInfo);
-            }
-        }
-
-
-        return stringWordInfoListHashMap;
+    private List<String> findDistinctWord(List<String> words) {
+        return words.stream().distinct().collect(Collectors.toList());
     }
-
 
 }

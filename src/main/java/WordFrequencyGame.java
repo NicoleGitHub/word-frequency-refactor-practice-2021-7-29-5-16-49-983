@@ -18,24 +18,22 @@ public class WordFrequencyGame {
 
     public String getResult(String sentence){
 
-
-        if (sentence.split(SPACE_PATTERN).length==1) {
+        if (isSentenceLengthEqualsOne(sentence)) {
             return sentence + NUMERIC_ONE_PATTERN;
         }
 
-            try {
+        try {
+            List<WordInfo> wordInfos = calculateWordFrequency(sentence);
+            sortWordInfo(wordInfos);
+            return joiningWordsAsSentence(wordInfos);
+        } catch (Exception e) {
+            return "Calculate Error";
+        }
 
-                List<WordInfo> wordInfos = calculateWordFrequency(sentence);
+    }
 
-                sortWordInfo(wordInfos);
-
-                return joiningWordsAsSentence(wordInfos);
-            } catch (Exception e) {
-
-
-                return "Calculate Error";
-            }
-        
+    private boolean isSentenceLengthEqualsOne(String sentence) {
+        return sentence.split(SPACE_PATTERN).length==1;
     }
 
     private String joiningWordsAsSentence(List<WordInfo> wordInfos) {

@@ -56,13 +56,10 @@ public class WordFrequencyGameTest {
     @Test
     public void should_throw_exception_when_getResult_given_empty_sentence() throws Exception {
         //given
-        String inputStr = null;
         String expectResult = "Calculate Error";
-        WordFrequencyGame game = new WordFrequencyGame();
         //When
-        String result = game.getResult(inputStr);
         //Then
-        assertThat(result).isEqualTo(expectResult);
+        validate_Input_words_process_to_expected_word(null, expectResult);
     }
 
     private void validate_Input_words_process_to_expected_word(String inputStr, String expectResult) {

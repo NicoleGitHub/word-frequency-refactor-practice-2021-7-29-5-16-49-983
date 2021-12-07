@@ -37,6 +37,8 @@ public class WordFrequencyGame {
         List<String> words = splitSentenceWithSpace(sentence);
 
         List<WordInfo> wordInfos = new ArrayList<>();
+        //#TODO : (Collection.frequency) or Group
+
         findDistinctWords(words).forEach(distinctWord -> {
             wordInfos.add(new WordInfo(distinctWord, findDistinctWordsFrequencyFromWords(words, distinctWord)));
         });
